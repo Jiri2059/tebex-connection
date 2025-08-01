@@ -8,12 +8,15 @@ export default async function handler(req, res) {
   }
 
   try {
-    const response = await axios.get(`https://plugin.tebex.io/payments/${transactionId}`, {
-      headers: {
-        'X-Tebex-Secret': process.env.TEBEX_SECRET,
-        'User-Agent': 'Vercel-Tebex-Verify',
-      },
-    });
+const response = await axios.get(
+  `https://plugin.tebex.io/payments/${transactionId}`,
+  {
+    headers: {
+      "X-Tebex-Secret": process.env.TEBEX_SECRET,
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    }
+  }
+);
 
     return res.status(200).json({ success: true, data: response.data });
   } catch (err) {
